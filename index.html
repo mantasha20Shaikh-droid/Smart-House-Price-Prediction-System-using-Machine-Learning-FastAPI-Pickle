@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart House Price Prediction</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet"
+          href="/static/css/style.css">
+
+</head>
+
+<body>
+
+<!-- ============================= -->
+<!-- Navbar -->
+<!-- ============================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold fs-3"
+           href="/">
+
+            🏠 Smart House Predictor
+
+        </a>
+
+    </div>
+
+</nav>
+
+<!-- ============================= -->
+<!-- Hero Section -->
+<!-- ============================= -->
+
+<section class="hero">
+
+    <div class="container text-center">
+
+        <h1 class="display-4 fw-bold">
+
+            Smart House Price Prediction
+
+        </h1>
+
+        <p class="lead">
+
+            Predict California House Prices using
+            Machine Learning,
+            FastAPI,
+            Bootstrap 5
+            and Random Forest.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- Main Container -->
+<!-- ============================= -->
+
+<div class="container my-5">
+
+<form action="/predict" method="post">
+
+<!-- ============================= -->
+<!-- Customer Information -->
+<!-- ============================= -->
+
+<div class="card shadow-lg mb-4">
+
+<div class="card-header bg-primary text-white">
+
+<h3>
+
+👤 Customer Information
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<label class="form-label">
+
+Customer Name
+
+</label>
+
+<input
+type="text"
+name="customer_name"
+class="form-control"
+required>
+
+</div>
+
+<div class="col-md-4">
+
+<label class="form-label">
+
+Email Address
+
+</label>
+
+<input
+type="email"
+name="email"
+class="form-control"
+required>
+
+</div>
+
+<div class="col-md-4">
+
+<label class="form-label">
+
+Phone Number
+
+</label>
+
+<input
+type="text"
+name="phone"
+class="form-control"
+required>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ============================= -->
+<!-- Property Details -->
+<!-- ============================= -->
+
+<div class="card shadow-lg mb-4">
+
+<div class="card-header bg-success text-white">
+
+<h3>
+
+🏡 Property Details
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<label class="form-label">
+
+Property Type
+
+</label>
+
+<select
+name="property_type"
+class="form-select">
+
+<option>Apartment</option>
+
+<option>Villa</option>
+
+<option>Bungalow</option>
+
+<option>Farm House</option>
+
+<option>Independent House</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4">
+
+<label class="form-label">
+
+Location
+
+</label>
+
+<select
+name="location"
+class="form-select">
+
+<option>California</option>
+
+<option>Texas</option>
+
+<option>Florida</option>
+
+<option>New York</option>
+
+<option>Washington</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4">
+
+<label class="form-label">
+
+City
+
+</label>
+
+<input
+type="text"
+name="city"
+class="form-control"
+placeholder="Los Angeles"
+required>
+
+</div>
+
+</div>
+
+<div class="row mt-3">
+
+<div class="col-md-4">
+
+<label class="form-label">
+
+Bedrooms
+
+</label>
+
+<select
+name="bedrooms"
+class="form-select">
+
+<option>1</option>
+<option>2</option>
+<option selected>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4">
+
+<label class="form-label">
+
+Bathrooms
+
+</label>
+
+<select
+name="bathrooms"
+class="form-select">
+
+<option>1</option>
+<option selected>2</option>
+<option>3</option>
+<option>4</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4">
+
+<label class="form-label">
+
+Area (sq.ft)
+
+</label>
+
+<input
+type="number"
+name="area"
+class="form-control"
+required>
+
+</div>
+
+</div>
+
+<hr>
+
+<h5 class="mt-3">
+
+Property Amenities
+
+</h5>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="form-check">
+
+<input
+class="form-check-input"
+type="checkbox"
+name="parking">
+
+<label class="form-check-label">
+
+🚗 Parking
+
+</label>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="form-check">
+
+<input
+class="form-check-input"
+type="checkbox"
+name="pool">
+
+<label class="form-check-label">
+
+🏊 Swimming Pool
+
+</label>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="form-check">
+
+<input
+class="form-check-input"
+type="checkbox"
+name="garden">
+
+<label class="form-check-label">
+
+🌳 Garden
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ============================= -->
+<!-- Machine Learning Inputs -->
+<!-- ============================= -->
+
+<div class="card shadow-lg mb-4">
+
+<div class="card-header bg-warning">
+
+<h3>
+
+🤖 Machine Learning Inputs
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Median Income
+
+</label>
+
+<input
+type="number"
+step="any"
+name="MedInc"
+class="form-control"
+required>
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+House Age
+
+</label>
+
+<input
+type="number"
+step="any"
+name="HouseAge"
+class="form-control"
+required>
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Average Rooms
+
+</label>
+
+<input
+type="number"
+step="any"
+name="AveRooms"
+class="form-control"
+required>
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Average Bedrooms
+
+</label>
+
+<input
+type="number"
+step="any"
+name="AveBedrms"
+class="form-control"
+required>
+
+</div>
+
+</div>
+
+<div class="row mt-3">
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Population
+
+</label>
+
+<input
+type="number"
+step="any"
+name="Population"
+class="form-control"
+required>
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Average Occupancy
+
+</label>
+
+<input
+type="number"
+step="any"
+name="AveOccup"
+class="form-control"
+required>
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Latitude
+
+</label>
+
+<input
+type="number"
+step="any"
+name="Latitude"
+class="form-control"
+required>
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Longitude
+
+</label>
+
+<input
+type="number"
+step="any"
+name="Longitude"
+class="form-control"
+required>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ============================= -->
+<!-- Predict Button -->
+<!-- ============================= -->
+
+<div class="text-center mb-5">
+
+<button
+type="submit"
+class="btn btn-primary btn-lg px-5">
+
+🔍 Predict House Price
+
+</button>
+
+</div>
+
+</form>
+
+<!-- ============================= -->
+<!-- Prediction Report -->
+<!-- ============================= -->
+
+{% if prediction %}
+
+<div class="card shadow-lg border-success">
+
+<div class="card-header bg-success text-white">
+
+<h2>
+
+🎉 Prediction Report
+
+</h2>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<table class="table table-bordered">
+
+<tr>
+
+<th>Customer</th>
+
+<td>{{ customer_name }}</td>
+
+</tr>
+
+<tr>
+
+<th>Email</th>
+
+<td>{{ email }}</td>
+
+</tr>
+
+<tr>
+
+<th>Phone</th>
+
+<td>{{ phone }}</td>
+
+</tr>
+
+<tr>
+
+<th>Property</th>
+
+<td>{{ property_type }}</td>
+
+</tr>
+
+<tr>
+
+<th>Location</th>
+
+<td>{{ location }}</td>
+
+</tr>
+
+<tr>
+
+<th>City</th>
+
+<td>{{ city }}</td>
+
+</tr>
+
+<tr>
+
+<th>Bedrooms</th>
+
+<td>{{ bedrooms }}</td>
+
+</tr>
+
+<tr>
+
+<th>Bathrooms</th>
+
+<td>{{ bathrooms }}</td>
+
+</tr>
+
+<tr>
+
+<th>Area</th>
+
+<td>{{ area }} sq.ft</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="col-md-6">
+
+<table class="table table-bordered">
+
+<tr>
+
+<th>Parking</th>
+
+<td>
+
+{% if parking %}
+✅ Yes
+{% else %}
+❌ No
+{% endif %}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Swimming Pool</th>
+
+<td>
+
+{% if pool %}
+✅ Yes
+{% else %}
+❌ No
+{% endif %}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Garden</th>
+
+<td>
+
+{% if garden %}
+✅ Yes
+{% else %}
+❌ No
+{% endif %}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Prediction Date</th>
+
+<td>{{ prediction_date }}</td>
+
+</tr>
+
+<tr>
+
+<th>Prediction Time</th>
+
+<td>{{ prediction_time }}</td>
+
+</tr>
+
+<tr class="table-success">
+
+<th>
+
+Estimated Price
+
+</th>
+
+<td>
+
+<h3 class="text-success">
+
+{{ prediction }}
+
+</h3>
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<hr>
+
+<h3 class="text-center mb-4">
+
+📊 Machine Learning Feature Chart
+
+</h3>
+
+<canvas id="myChart"></canvas>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+<!-- ============================= -->
+<!-- Footer -->
+<!-- ============================= -->
+
+<footer class="bg-dark text-white text-center p-4 mt-5">
+
+<h4>
+
+🏠 Smart House Price Prediction
+
+</h4>
+
+<p>
+
+Developed using
+
+FastAPI •
+
+Machine Learning •
+
+Random Forest •
+
+Bootstrap 5 •
+
+Python
+
+</p>
+
+</footer>
+
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{% if prediction %}
+
+<script>
+
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+
+type: 'bar',
+
+data: {
+
+labels: [
+
+'Income',
+
+'Rooms',
+
+'Population',
+
+'House Age'
+
+],
+
+datasets: [{
+
+label: 'Property Statistics',
+
+data: [
+
+{{ graph_income }},
+
+{{ graph_rooms }},
+
+{{ graph_population }},
+
+{{ graph_age }}
+
+],
+
+borderWidth: 1
+
+}]
+
+},
+
+options: {
+
+responsive: true,
+
+scales: {
+
+y: {
+
+beginAtZero: true
+
+}
+
+}
+
+}
+
+});
+
+</script>
+
+{% endif %}
+
+</body>
+
+</html>
